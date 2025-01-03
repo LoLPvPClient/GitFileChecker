@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Path to the Python script
-SCRIPT="check_docstrings.py"
+SCRIPT="py_file_checker"
 
 # Check Python files staged for commit
 FILES=$(git diff --cached --name-only --diff-filter=ACM | grep '\.py$')
@@ -15,7 +15,7 @@ fi
 ERRORS=0
 for FILE in $FILES; do
     echo "Checking $FILE for docstring issues..."
-    python3 $SCRIPT "$FILE"
+    python -m $SCRIPT "$FILE"
     if [ $? -ne 0 ]; then
         ERRORS=1
     fi
