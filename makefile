@@ -12,9 +12,9 @@ PATCH_ARGS :=              # Add any arguments needed for the patch script
 
 deploy-pre-commit-script:
 	@echo Deploying pre-commit script...
-	cp pre-commit.sh ./.git/hooks/pre-commit
+	@cp pre-commit.sh ./.git/hooks/pre-commit
 	@echo Making the pre-commit executable
-	sudo chmod +x ./.git/hooks/pre-commit
+	@sudo chmod +x ./.git/hooks/pre-commit
 	@echo Done!
 
 # # Default target
