@@ -14,7 +14,7 @@ fi
 # Run the Python script for each staged file
 ERRORS=0
 for FILE in $FILES; do
-    echo "Checking $FILE for docstring issues..."
+    # echo "Checking $FILE for docstring issues..."
     python -m $SCRIPT "$FILE"
     if [ $? -ne 0 ]; then
         ERRORS=1
@@ -22,7 +22,7 @@ for FILE in $FILES; do
 done
 
 if [ $ERRORS -ne 0 ]; then
-    echo "Docstring issues found. Commit aborted."
+    echo "Issues has occurred during the commit process. Commit aborted."
     exit 1
 fi
 
