@@ -2,6 +2,13 @@ import ast
 import re
 
 
+class Tester:
+    def a(self, b):
+        """_summary_
+        """
+        pass
+
+
 def analyze_docstrings(file_path):
     with open(file_path, "r") as file:
         tree = ast.parse(file.read())
