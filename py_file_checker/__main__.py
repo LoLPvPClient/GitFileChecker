@@ -1,7 +1,8 @@
 import sys
-from docstring_checker import analyze_docstrings
+from .main import PyFileChecker
+from .modules.docstring_validator import DocstringValidator
 
-FUNCTIONS = [("Docstrings", analyze_docstrings)]
+FUNCTIONS = [("Docstrings", lambda node: DocstringValidator(node).validate())]
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -9,17 +10,26 @@ if __name__ == "__main__":
         sys.exit(1)
 
     file_path = sys.argv[1]
-    issues = []
-    for func_title, func in FUNCTIONS:
-        result = func(file_path)
-        if result:
-            issues.append((func_title, result))
 
-    if issues:
-        print(f"Issues in {file_path}:")
-        for issue in issues:
-            print(f" - {issue}")
+    file_checker = PyFileChecker(filepath=file_path)
+    file_checker.validating_functions = FUNCTIONS
+    file_checker.start()
+
+    issues = file_checker.result  # Issue result content
+    has_issues = bool([issue_content for _,
+                      issue_content in issues if issue_content])  # Will return true or false depending on result of issue
+
+    if has_issues:
+        print(f"Validation failed occured in {file_path}:")
+        print(has_issues)
+        for issue_type, issue in issues:
+            print(f"{issue_type}: ")
+            for issue_content in issue:
+                print(
+                    f" - {issue_content['message']} ({file_path}:{issue_content['line']})")
+        print()
         sys.exit(1)
     else:
         print(f"No issues in {file_path}.")
+        print()
         sys.exit(0)
