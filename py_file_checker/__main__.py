@@ -21,7 +21,6 @@ if __name__ == "__main__":
 
     if has_issues:
         print(f"Validation failed occured in {file_path}:")
-        print(has_issues)
         for issue_type, issue in issues:
             print(f"{issue_type}: ")
             for issue_content in issue:

@@ -1,0 +1,16 @@
+; This file will control how the file checker will be checked.
+; This file will be put in the same directoty as where the py_file_checker package was.
+
+[INCLUDE]
+; Put in this section the kind of files to be included.
+; If no files were included in the INCLUDE section, EVERYTHING within the project folder will be considered as included.
+
+; Sample File to be included:
+; sample_a.py
+
+[EXCLUDE]
+; Put in this section the kind of files to be excluded.
+; In case of a scenario where a file is both included in both the INCLUDED and EXCLUDED section, the program will prioritize that the file will be marked as excluded.
+
+; Sample File to be excluded:
+; sample_b.py
